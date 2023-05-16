@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import ProjectList from './ProjectList';
-import { projectAPI } from "./projectAPI";
+import { projectAPI } from "./projectAPI1";
 import { Project } from "./Project";
 
 function ProjectsPage() {
