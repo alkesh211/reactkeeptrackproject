@@ -37,11 +37,24 @@ function ProjectsPage() {
     }, [currentPage]);
 
     const saveProject = (project: Project) => {
-        let updatedProjects = projects.map((p: Project) => {
-            return p.id === project.id ? project : p;
-            setProjects(updatedProjects);
-        });
-        setProjects(updatedProjects);
+        // let updatedProjects = projects.map((p: Project) => {
+        //     return p.id === project.id ? project : p;
+        //     setProjects(updatedProjects);
+        // });
+        // setProjects(updatedProjects);
+        projectAPI
+            .put(project)
+            .then((updatedProject) => {
+                let updatedProjects = projects.map((p: Project) => {
+                    return p.id === project.id ? new Project(updatedProject) : p;
+                });
+                setProjects(updatedProjects);
+            })
+            .catch((e) => {
+                if (e instanceof Error) {
+                    setError(e.message);
+                }
+            });
     };
     return (
         <Fragment>
